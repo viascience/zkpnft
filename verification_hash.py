@@ -8,6 +8,8 @@ import numpy as np
 from PIL import Image
 
 
+verifier = typer.Typer()
+
 def hash_sequences(sequence_noise: list):
 
   values = []
@@ -40,7 +42,7 @@ def noise_addition(sequence, noise):
        
   return noise_sequence
   
-
+@verifier.command()
 def main(sequence: str, noise: int):
 
   typer.echo(sequence)
@@ -66,4 +68,4 @@ if __name__ == "__main__":
   # Example call:
   # python verification_hash.py '[6, 7, 9, 10, 12]' 1
 
-  typer.run(main)
+  verifier()

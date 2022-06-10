@@ -71,4 +71,10 @@ Output:
   
   + truffle migrate --network polygon
   
+ ## How to run tests:
+ 
+  `poetry shell`
+  
+  `pytest -vs`
+  
 

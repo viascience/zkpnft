@@ -8,6 +8,8 @@ import numpy as np
 from PIL import Image
 
 
+prover = typer.Typer()
+
 def random_sequence():
   randomlist = []
   
@@ -61,14 +63,17 @@ def sequence_scrambler(list_random_sequences: list, list_given_sequences: list )
   
   return combined_list
   
-def noise_addition(list_given_sequences):
+def noise_addition(list_given_sequences, noise):
   list_given_sequences_noise = []
   noise_seeds = {}
   for num, sequence in enumerate(list_given_sequences):
-  
-    n = random.randint(1,30)
+    if noise is not None:
+      n = noise
+    else:  
+      n = random.randint(1,30)
+      
     noise_seeds[f'user_{num}'] = n
-    
+
     random.seed(n)
     noise = random.randint(1,5)
     
@@ -78,8 +83,8 @@ def noise_addition(list_given_sequences):
     
   return list_given_sequences_noise, noise_seeds
   
-
-def main(dict_of_sequences: str):
+@prover.command()
+def main(dict_of_sequences: str, noise=None):
 
   dict_of_sequences = json.loads(dict_of_sequences)  
   
@@ -91,7 +96,7 @@ def main(dict_of_sequences: str):
   
   list_given_sequences = [dict_of_sequences[user] for user in dict_of_sequences]
   
-  list_given_sequences_noise, noise_seeds = noise_addition(list_given_sequences)
+  list_given_sequences_noise, noise_seeds = noise_addition(list_given_sequences, noise)
   
   shuffled_list = sequence_scrambler(list_random_sequences, list_given_sequences_noise)
   
@@ -134,4 +139,4 @@ if __name__ == "__main__":
   # Proof as image:
   #[[177,  34, 231,   2,  88], [169, 137, 213,  11, 215], [ 67, 169,  23, 165, 109], [143, 165, 165,   2,  11], [ 81, 143, 237, 137, 169]]
   # Noise to create verification sequence {'user_0': 1, 'user_1': 19}
-  typer.run(main)
+  prover()

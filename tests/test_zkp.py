@@ -1,20 +1,31 @@
+import typer
 from typer.testing import CliRunner
 
-from .main import app
+from ..main import prover
+from ..verification_hash import verifier
 
-runner = CliRunner()
+
 
 
 def test_hello_world():
     print("Hello World!")
 
 def test_central_proof():
-    result = runner.invoke(app ,['{"user1": [6, 7, 9, 10, 12], "user2": [1, 2, 3, 8, 7]}']) 
+    runner = CliRunner()
+    result = runner.invoke(prover ,['{"user1": [6, 7, 9, 10, 12], "user2": [1, 2, 3, 8, 7]}', '--noise', 1]) 
+    
+    print(f"Result \n {result.stdout}")
+    
     assert result.exit_code == 0 
-    assert len(result) == 5
-    assert len(result[0]) == 5
+ 
+    expected_response = "\n{'user_0': '1', 'user_1': 4}\n"
+
+    assert expected_response in result.stdout
+
 
 def test_verification():
-    result = runner.invoke(app ,['[6, 7, 9, 10, 12]', 1])
+    runner = CliRunner()
+    result = runner.invoke(verifier, ['[6, 7, 9, 10, 12]','1'])
+    print(f"Result \n {result.stdout}")
     assert result.exit_code == 0 
-    assert result == [169, 137, 213, 11, 215]
+    assert  '\n[169, 137, 213, 11, 215]\n' in result.stdout
