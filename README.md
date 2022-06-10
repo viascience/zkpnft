@@ -77,6 +77,10 @@ Main two functionalities of the smart contract are:
   `https://blog.paulmcaviney.ca/how-to-mint-an-nft-on-polygon`
   
  ## MUMBAI POLYGON TESTNET DEVELOPMENT 
+ 
+  + Define .secret with wallet secret key to create the contract and do NOT commit the information online, as the key could be stolen.
+  
+  + Define Polygon scan token under truffle-config.json
   
   + To obtain tokens for deployment on Mumbai Polygon testnet please go to: 
     
