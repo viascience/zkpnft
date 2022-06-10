@@ -6,40 +6,51 @@ Visual ZKP proof generator
 
  + Main script (Python):  main.py
  
- The pixel colours define the sequences given by the users
-
- + Environment: environment.yml
-
-
-Polygon smart contract verification.
-
-Input:
+ + Sequence verification generator (Python): verification_hash.py
  
- + NFT image
+ + A Polygon smart contract with the NFT verification logic /verification
  
- + User given hash sequence
 
-Output:
+# Main.py
 
- + True or False
+ZKP visual proof generator given two sequences of uint[5] created by two different users.
+The output of the script are:
+
+* An image of 5 by 5 where the pixels correspond to sha256(sequence) mod 255.
+
+* The noise per user added to the sequences before the creation of the hash.
+
+# Verification_hash.py
+
+Cryptographic verification sequence generator given the original image and the noise used by main.py (central oracle able to generate the global proof).
+
+# /verification 
+
+
+NFT ERC721 verification smart contract on Polygon.
+
+Main two functionalities of the smart contract are:
+
+* creation and minting of a NFT with its corresponding uint[5][5] values per pixel.
+* verification of a given sequence over a token.
  
- Installation:
+ Smart contract support libraries:
  
  + `npm install -g truffle`
  
  + `npm install @openzeppelin/contracts`
  
- mnemonic seed phrase: .env 
  
- (DO NOT USE EXISTING .env VALUE AS IT IS ONLY AN EXAMPLE)
+ For local development mnemonic seed phrase: .env 
  
- ## GANACHE LOCAL DEVELOPMENT
+ 
+ ## LOCAL DEVELOPMENT WITH GANACHE
  
   + Install Ganache for local development: `npm install -g ganache-cli`
   
   `ganache-cli`
   
-  + Truffle migrate
+  + Truffle migrate (Deploys smart contract on local test network)
   
   `truffle migrate --config=truffle-config.polygon.js --network=development`
 
@@ -52,26 +63,45 @@ Output:
   
   `let instance = await VerifierNFT.at("YOUR_CONTRACT_ADDRESS_HERE")`
   
+  Mint NFT:
+  
   `await instance.mint("YOUR_WALLET_ADDRESS", "YOUR_METADATA_URI", uint[5][5] sequences)`
+  
+  Verify sequence on a given NFT id:
   
   `await instance.verify(sequenceToVerify, tokenID)`
   
-  TokenID correspond to the proof.
+  TokenID points to the NFT with the global proof.
     
-  Reference tutorial to deploy on testnet instead of local net 
+  Reference tutorial to deploy on testnet instead of local net: 
   `https://blog.paulmcaviney.ca/how-to-mint-an-nft-on-polygon`
   
- ## POLYGON TEST NET DEVELOPMENT 
+ ## MUMBAI POLYGON TESTNET DEVELOPMENT 
   
   + To obtain tokens for deployment on Mumbai Polygon testnet please go to: 
     
       https://faucet.polygon.technology/
  
-  + truffle compile
+  + `truffle compile`
   
-  + truffle migrate --network polygon
+  + Deployment on Mumbai testnet: `truffle migrate --network polygon`
   
- ## How to run tests:
+  + Console to mint and verify over deployed contract on Mumbai testnet: `truffle console --network polygon`
+  
+  Steps to test: 
+  
+  `let instance = await VerifierNFT.at("YOUR_CONTRACT_ADDRESS_HERE")`
+  
+  Mint NFT:
+  
+  `await instance.mint("YOUR_WALLET_ADDRESS", "YOUR_METADATA_URI", uint[5][5] sequences)`
+  
+  Verify sequence on a given NFT id:
+  
+  `await instance.verify(sequenceToVerify, tokenID)`
+  
+  
+ ## For development, steps to execute Python unitest tests:
  
   `poetry shell`
   
