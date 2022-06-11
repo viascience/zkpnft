@@ -130,12 +130,6 @@ def main(dict_of_sequences_str: str, noise=None):
 
     return img
 
-    # padded_lists = padding_image(mod_hashes)
-
-    # image = create_image(padded_lists)
-
-    # show(image)
-
 
 if __name__ == "__main__":
     # Example call:
