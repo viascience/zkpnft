@@ -2,25 +2,28 @@
 
 The following repository defines a:
 
+
+Zero Knowledge Proofs, ZKPs, is a method that allows a prover to proof a statement to a verifier without having to reveal it.
+
 Visual ZKP proof generator 
 
  + Main script (Python):  main.py
  
  + Sequence verification generator (Python): verification_hash.py
  
- + A Polygon smart contract with the NFT verification logic /verification
+ + A Polygon smart contract (https://polygon.technology/) with the NFT verification logic /verification
  
 
-# Main.py
+# main.py
 
 ZKP visual proof generator given two sequences of uint[5] created by two different users.
-The output of the script are:
+The outputs of the script are:
 
-* An image of 5 by 5 where the pixels correspond to sha256(sequence) mod 255.
+* A 5 by 5 image with pixels correspond to sha256(sequence) mod 255.
 
-* The noise per user added to the sequences before the creation of the hash.
+* Noise is added to each user's sequence before the hash creation.
 
-# Verification_hash.py
+# verification_hash.py
 
 Cryptographic verification sequence generator given the original image and the noise used by main.py (central oracle able to generate the global proof).
 
@@ -31,7 +34,7 @@ NFT ERC721 verification smart contract on Polygon.
 
 Main two functionalities of the smart contract are:
 
-* creation and minting of a NFT with its corresponding uint[5][5] values per pixel.
+* creation and minting of an NFT with its corresponding uint[5][5] values per pixel.
 * verification of a given sequence over a token.
  
  Smart contract support libraries:
@@ -82,13 +85,13 @@ Main two functionalities of the smart contract are:
   
   + Define Polygon scan token under truffle-config.json
   
-  + To obtain tokens for deployment on Mumbai Polygon testnet please go to: 
+  + To obtain tokens for deployment on the Mumbai Polygon testnet please go to: 
     
       https://faucet.polygon.technology/
  
   + `truffle compile`
   
-  + Deployment on Mumbai testnet: `truffle migrate --network polygon`
+  + Deployment on the Mumbai testnet: `truffle migrate --network polygon`
   
   + Console to mint and verify over deployed contract on Mumbai testnet: `truffle console --network polygon`
   
@@ -105,7 +108,7 @@ Main two functionalities of the smart contract are:
   `await instance.verify(sequenceToVerify, tokenID)`
   
   
- ## For development, steps to execute Python unitest tests:
+ ## For development, steps to execute Python unittest tests:
  
   `poetry shell`
   
