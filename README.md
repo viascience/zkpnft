@@ -1,9 +1,7 @@
+Zero Knowledge Proofs, ZKPs, is a method that allows a prover to proof a statement to a verifier without having to reveal it.
 
 
 The following repository defines a:
-
-
-Zero Knowledge Proofs, ZKPs, is a method that allows a prover to proof a statement to a verifier without having to reveal it.
 
 Visual ZKP proof generator 
 
