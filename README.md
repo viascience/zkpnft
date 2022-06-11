@@ -112,4 +112,14 @@ Main two functionalities of the smart contract are:
   
   `pytest -vs`
   
+### Note on Random
+
+The Python random module is regarded insecure (https://docs.python.org/3/library/random.html - warning section).
+Secrets module is recommended (https://docs.python.org/3/library/secrets.html#module-secrets)
+
+If secrets want to be used, please take into account that python will need the installation of the following libraries as a dependency of python-ldap for secrets:
+
+`apt-get install python-dev libldap2-dev libsasl2-dev libssl-dev`
+
+
 
