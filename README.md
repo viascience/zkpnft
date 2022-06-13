@@ -25,7 +25,9 @@ The script can be triggered by runnning:
 
 `docker build . -t zkp`
 
-`docker run -v $(pwd)/image:/hash_mechanism/image -it zkp bash`
+`docker run -v $(pwd)/image:/hash_mechanism/image -it zkp bash`  
+
+The previous command will exec you into the created Docker container.
 
 `python main.py '{"user1": [6, 7, 9, 10, 12], "user2": [1, 2, 3, 8, 7]}'`
 
@@ -43,6 +45,8 @@ The script can be triggered by runnning:
 `docker build . -t zkp`
 
 `docker run -v $(pwd)/image:/hash_mechanism/image -it zkp bash`
+
+The previous command will exec you into the created Docker container.
 
 `python verification_hash.py '[6, 7, 9, 10, 12]' 1`
 
