@@ -31,7 +31,7 @@ The script can be triggered by runnning:
 
 {}: Dictionary of users' sequences
 
-It will save the proof.png at /image in the host computer.
+It will save the proof.png at current_directory/image in the host computer.
 
 # verification_hash.py
 
@@ -49,7 +49,7 @@ The script can be triggered by runnning:
 []: Sequence
 Int: Noise of the user
 
-It will save the proof.png at /image in the host computer.
+It will save the proof.png at current_directory/image in the host computer.
 
 # /verification 
 
