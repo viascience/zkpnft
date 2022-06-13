@@ -25,7 +25,5 @@ RUN /bin/bash -c "source $HOME/.poetry/env  && poetry install"
 
 RUN echo "source $HOME/.poetry/env" >> .bashrc
 RUN echo "poetry shell" >> .bashrc
-RUN echo "pip install pyOpenSSL" >> .bashrc
-RUN echo "poetry add secrets" >> .bashrc
 
 ENTRYPOINT bash .bashrc
