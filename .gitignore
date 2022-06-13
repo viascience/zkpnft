@@ -1,3 +1,4 @@
 tests/__pycache__/*
 .secret
 .token
+__pycache__/*
