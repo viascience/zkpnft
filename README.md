@@ -51,6 +51,7 @@ The previous command will exec you into the created Docker container.
 `python verification_hash.py '[6, 7, 9, 10, 12]' 1`
 
 []: Sequence
+
 Int: Noise of the user
 
 It will save the proof.png at current_directory/image in the host computer.
