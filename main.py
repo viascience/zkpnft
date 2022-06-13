@@ -13,8 +13,7 @@ def random_sequence():
     randomlist = []
 
     for i in range(0, 5):
-        # For secure version update to:
-        # n = secrets.choice(range(1, 30))
+        # For secure version increase entropy 
         n = random.randint(1, 30)
         randomlist.append(n)
 
@@ -73,13 +72,13 @@ def noise_addition(list_given_sequences, noise):
         if noise is not None:
             n = noise
         else:
-            # To improve security update to: n = secrets.choice(range(1, 30))
+            # For secure version increase entropy 
             n = random.randint(1, 30)
 
         noise_seeds[f"user_{num}"] = n
 
         random.seed(n)
-        # n = secrets.choice(range(1, 5))
+        # For secure version increase entropy 
         noise = random.randint(1, 5)
 
         noise_sequence = [i + noise for i in sequence]

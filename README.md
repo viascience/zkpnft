@@ -21,9 +21,39 @@ The outputs of the script are:
 
 * Noise is added to each user's sequence before the hash creation.
 
+The script can be triggered by runnning: 
+
+`docker build . -t zkp`
+
+`docker run -v $(pwd)/image:/hash_mechanism/image -it zkp bash`  
+
+The previous command will exec you into the created Docker container.
+
+`python main.py '{"user1": [6, 7, 9, 10, 12], "user2": [1, 2, 3, 8, 7]}'`
+
+{}: Dictionary of users' sequences
+
+It will save the proof.png at current_directory/image in the host computer.
+
 # verification_hash.py
 
 Cryptographic verification sequence generator given the original image and the noise used by main.py (central oracle able to generate the global proof).
+
+
+The script can be triggered by runnning: 
+
+`docker build . -t zkp`
+
+`docker run -v $(pwd)/image:/hash_mechanism/image -it zkp bash`
+
+The previous command will exec you into the created Docker container.
+
+`python verification_hash.py '[6, 7, 9, 10, 12]' 1`
+
+[]: Sequence
+Int: Noise of the user
+
+It will save the proof.png at current_directory/image in the host computer.
 
 # /verification 
 
@@ -112,14 +142,7 @@ Main two functionalities of the smart contract are:
   
   `pytest -vs`
   
-### Note on Random
 
-The Python random module is regarded insecure (https://docs.python.org/3/library/random.html - warning section).
-Secrets module is recommended (https://docs.python.org/3/library/secrets.html#module-secrets)
-
-If secrets want to be used, please take into account that python will need the installation of the following libraries as a dependency of python-ldap for secrets:
-
-`apt-get install python-dev libldap2-dev libsasl2-dev libssl-dev`
 
 
 
