@@ -54,8 +54,6 @@ The previous command will exec you into the created Docker container.
 
 Int: Noise of the user
 
-It will save the proof.png at current_directory/image in the host computer.
-
 # /verification 
 
 
