@@ -25,7 +25,7 @@ The script can be triggered by runnning:
 
 `docker build . -t zkp`
 
-`docker run -v $(pwd):/hash_mechanism/image -it zkp bash`
+`docker run -v $(pwd)/image:/hash_mechanism/image -it zkp bash`
 
 `python main.py '{"user1": [6, 7, 9, 10, 12], "user2": [1, 2, 3, 8, 7]}'`
 
